@@ -6,6 +6,8 @@
     "author": "Darlan H. <darlanhermessjb@hotmail.com>",
     "license": "MIT",
     "scripts": {
+        "migration:run": "ts-node -r dotenv/config ./node_modules/typeorm/cli.js migration:run",
+        "migration:revert": "ts-node -r dotenv/config ./node_modules/typeorm/cli.js migration:revert",
         "dev": "ts-node-dev -r dotenv/config --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts",
         "start": "cross-env NODE_ENV=production node dist/server.js",
         "build": "tsc"
@@ -13,12 +15,17 @@
     "dependencies": {
         "cross-env": "^7.0.3",
         "dotenv": "^10.0.0",
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "pg": "^8.6.0",
+        "reflect-metadata": "^0.1.13",
+        "typeorm": "^0.2.34",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "@types/express": "^4.17.13",
         "@types/jest": "^26.0.24",
         "@types/node": "^16.3.1",
+        "@types/uuid": "^8.3.1",
         "@typescript-eslint/eslint-plugin": "^3.10.0",
         "@typescript-eslint/parser": "^3.10.0",
         "eslint": "6.8.0",
