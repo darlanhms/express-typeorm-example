@@ -11,9 +11,9 @@ module.exports = {
     username: 'postgres',
     password: 'postgres',
     database: process.env.DB_NAME || 'sample-database',
-    entities: [`${rootDir}/entity/**/*.ts`],
-    migrations: [`${rootDir}/migration/**/*.ts`],
-    subscribers: [`${rootDir}}/subscriber/**/*.ts`],
+    entities: [`${rootDir}/entity/**/*.**`],
+    migrations: [`${rootDir}/migration/**/*.**`],
+    subscribers: [`${rootDir}}/subscriber/**/*.**`],
     cli: {
         migrationsDir: `${rootDir}/migration`,
     },
