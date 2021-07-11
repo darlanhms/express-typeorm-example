@@ -8,7 +8,6 @@ module.exports = {
     port: process.env.DB_PORT || 5432,
     dropSchema: false,
     username: 'postgres',
-    username: 'postgres',
     password: 'postgres',
     database: process.env.DB_NAME || 'sample-database',
     entities: [`${rootDir}/entity/**/*.**`],
@@ -17,4 +16,5 @@ module.exports = {
     cli: {
         migrationsDir: `${rootDir}/migration`,
     },
+    migrationsRun: true
 };

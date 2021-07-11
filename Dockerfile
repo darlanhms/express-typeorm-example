@@ -28,6 +28,7 @@ ENV PORT=3000
 COPY --from=builder /app/dist/ ./src/
 COPY --from=builder /app/node_modules/ ./node_modules
 COPY package.json ./
+COPY ormconfig.js ./
 
 USER node
 

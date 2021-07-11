@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+    web:
+        build: .
+        ports:
+            - '3000:3000'
+        environment:
+            PORT: '3000'
+            DB_HOST: typeorm-example-db
+            DB_PORT: 5432
+        links:
+            - typeorm-example-db
+        depends_on:
+            - typeorm-example-db
+        networks:
+            - typeorm-postgres
+    typeorm-example-db:
+        container_name: typeorm-example-db
+        build: ./src/database
+        image: postgres:latest
+        restart: unless-stopped
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_PASSWORD: 'postgres'
+        volumes:
+            - typeorm-postgres-data:/data
+        networks:
+            - typeorm-postgres
+volumes:
+    typeorm-postgres-data:
+networks:
+    typeorm-postgres:
+        driver: bridge
