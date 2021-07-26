@@ -1,12 +1,13 @@
 {
     "AWSEBDockerrunVersion": "1",
     "Image": {
-        "Name": "darlanhms/express-typeorm-example:1.0.0"
+        "Name": "darlanhms/express-typeorm-example:1.0.1"
     },
     "Ports": [
         {
             "ContainerPort": 3000,
             "HostPort": 80
         }
-    ]
+    ],
+    "Command": "node dist/server.js"
 }

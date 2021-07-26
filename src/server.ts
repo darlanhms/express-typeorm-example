@@ -1,16 +1,5 @@
-import { createConnection } from 'typeorm';
 import app from './app';
-
-const connectToDB = async () => {
-    try {
-        await createConnection();
-        console.log('connected successfully');
-    } catch (error) {
-        console.error(`an error occured: ${error.message}`);
-        console.error('retrying connection...');
-        await connectToDB();
-    }
-};
+import connectToDB from './database/connect';
 
 connectToDB();
 

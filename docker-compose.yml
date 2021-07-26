@@ -1,34 +1,26 @@
 version: '3.9'
 services:
-    web:
-        build: .
+    express-typeorm-example:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: production
+        expose:
+            - '3000'
         ports:
-            - '3000:3000'
+            - '80:3000'
         environment:
             PORT: '3000'
-            DB_HOST: typeorm-example-db
-            DB_PORT: 5432
-        links:
-            - typeorm-example-db
+            DB_HOST: db
+            DB_PORT: '5432'
         depends_on:
-            - typeorm-example-db
-        networks:
-            - typeorm-postgres
-    typeorm-example-db:
-        container_name: typeorm-example-db
-        build: ./src/database
-        image: postgres:latest
-        restart: unless-stopped
+            - db
+        links:
+            - db
+        command: node dist/server.js
+    db:
+        image: postgres
         ports:
-            - '5432:5432'
+            - 5432:5432
         environment:
             POSTGRES_PASSWORD: 'postgres'
-        volumes:
-            - typeorm-postgres-data:/data
-        networks:
-            - typeorm-postgres
-volumes:
-    typeorm-postgres-data:
-networks:
-    typeorm-postgres:
-        driver: bridge

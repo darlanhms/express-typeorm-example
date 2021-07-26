@@ -2,34 +2,29 @@ FROM node:12-buster-slim AS base
 
 RUN apt-get update && apt-get install --no-install-recommends --yes openssl
 
-ENV PRODUCTION=true
+ENV PORT=3000
 
 WORKDIR /app
 
-### BUILDER ###
-FROM base AS builder
+FROM base as builder
 
 COPY package.json ./
 
-RUN npm install
+RUN npm i
 
-# Copy source files
 COPY . .
 
-# Build
-RUN npm run build
+FROM base as production
 
-### RUNNER ###
-FROM base
+ENV NODE_ENV=production
 
-ENV PORT=3000
-
-# Copy runtime project
-COPY --from=builder /app/dist/ ./src/
-COPY --from=builder /app/node_modules/ ./node_modules
+COPY --from=builder ./app/node_modules ./node_modules
+COPY --from=builder ./app/src ./src
 COPY package.json ./
 COPY ormconfig.js ./
+COPY tsconfig.json ./
+
+RUN npm run build
 
 USER node
 
-CMD ["node", "src/server.js"]
