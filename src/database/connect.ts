@@ -8,11 +8,11 @@ const connectToDB = async (): Promise<void> => {
     } catch (error) {
         console.error(`an error occured: ${error.message}`);
         console.error('retrying connection in 3 seconds...');
-        await retryInSeconds();
+        await retryIn3Seconds();
     }
 };
 
-async function retryInSeconds(): Promise<void> {
+async function retryIn3Seconds(): Promise<void> {
     return new Promise(resolve => {
         setTimeout(async () => {
             resolve(await connectToDB());
