@@ -8,8 +8,8 @@ jobs:
     deploy-image:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
             - name: Set env
+                uses: actions/checkout@v2
                 id: vars
                 run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
             - name: Log in to Docker Hub
