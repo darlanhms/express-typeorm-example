@@ -11,7 +11,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - id: vars
-            run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
+                run: echo "123"
             - name: Log in to Docker Hub
                 uses: docker/login-action@v1
                 with:
