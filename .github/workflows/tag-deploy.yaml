@@ -4,15 +4,12 @@ on:
         tags:
             - '*'
 jobs:
-    deploy-image:
-        name: 'Publish docker image'
+    commit:
+        name: Test
         runs-on: ubuntu-latest
+
         steps:
             - name: Checkout repository
-                uses: actions/checkout@v2
-                with:
-                fetch-depth: 0
-            - id: vars
-                run: echo "::set-output name=tag::${GITHUB_REF#refs/*/}"
-            - name: Test env
-                run: echo ${{ steps.vars.outputs.tag }}
+              uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
