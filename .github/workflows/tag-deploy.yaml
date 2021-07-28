@@ -9,8 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: Set env
-                id: vars
+            - id: vars
                 run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
             - name: Log in to Docker Hub
                 uses: docker/login-action@v1
