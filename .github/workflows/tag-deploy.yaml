@@ -5,7 +5,7 @@ on:
             - '*'
 jobs:
     commit:
-        name: Test
+        name: Test worflow
         runs-on: ubuntu-latest
 
         steps:
